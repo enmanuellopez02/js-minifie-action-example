@@ -1,0 +1,28 @@
+name: Minify and Deploy Tracker Service SDK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Minify tracker-service-sdk-v1.js
+      run: |
+        npx minify tracker-service-sdk-v1.js -o tracker-service-sdk-v1.min.js
+
+    - name: Commit and Push Minified File
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Minified tracker-service-sdk-v1.js"
+        branch: production
+        file_pattern: tracker-service-sdk-v1.min.js
+        commit_user_name: MinifyAction[bot]
+        commit_user_email: minify-action@users.noreply.github.com
+        push_options: --force
