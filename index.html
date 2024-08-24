@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Ejecutando prueba de envio de evento -> Tracker</h1>
+    <button id="btn_enviar_evento">Enviar evento</button>
+    <script src="tracker-service-sdk-v1.min.js"></script>
+    <script>
+        document.getElementById('btn_enviar_evento').addEventListener('click', async function () {
+            var evento = {
+                "eventType": "purchase",
+                "data": null,
+                "metadata": {
+                    "clientId": "M1 web",
+                },
+                "tags": [{ "key": "value" }]
+            };
+            const result = await TrackerService.sendEventAsync(evento);
+            console.log({result});
+        });
+    </script>
+</body>
+
+</html>
