@@ -24,7 +24,7 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: "Minified tracker-service-sdk-v1.js"
-        branch: production
+        branch: main
         file_pattern: tracker-service-sdk-v1.min.js
         commit_user_name: MinifyAction[bot]
         commit_user_email: minify-action@users.noreply.github.com
