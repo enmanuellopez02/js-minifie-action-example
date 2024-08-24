@@ -11,12 +11,12 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Install minify package
-      run: npm install -g minify
+    - name: Install terser
+      run: npm install -g terser
 
-    - name: Minify tracker-service-sdk-v1.js
+    - name: Minify tracker-service-sdk-v1.js with terser
       run: |
-        minify --type js tracker-service-sdk-v1.js -o tracker-service-sdk-v1.min.js
+        terser tracker-service-sdk-v1.js -o tracker-service-sdk-v1.min.js
 
     - name: Commit and Push Minified File
       env:
